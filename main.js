@@ -628,7 +628,6 @@ const TRANSLATIONS = {
         'menu.color': 'Farbe',
         'menu.emptyHex': 'Leere Wabe',
         'notice.assetMissing': 'Grafik nicht gefunden: {name}',
-        'notice.assetsMissing': '{name} fehlen. Ordnerinhalt oder Pfad unter {settings} prüfen!',
         'assetWarning.hideHints': 'Hinweise ausblenden',
         'assetWarning.discard': 'Verwerfen',
         'assetWarning.list': 'Auflisten',
@@ -639,16 +638,32 @@ const TRANSLATIONS = {
         'missingList.title': 'Fehlende Grafiken',
         'missingList.heading': '{name} fehlen',
         'missingList.none': 'Keine fehlenden Grafiken.',
-        'missingList.found': 'Gefunden im aktuellen Pfad',
+        'missingList.found': 'Gefunden in: {path}',
         'missingList.apply': 'Neue Pfade übernehmen',
-        'assetWarning.discardTip': 'Alle fehlenden Grafiken endgültig entfernen (von der Karte und aus der Verlaufsleiste)',
+        'assetWarning.discardTip': 'Alle fehlenden Wabengrafiken endgültig entfernen (von der Karte und aus der Verlaufsleiste). Die Projektion bleibt erhalten.',
         'discardAssets.title': 'Fehlende Grafiken verwerfen?',
-        'discardAssets.message': 'Alle fehlenden Grafiken werden von der Karte und aus dem Verlauf entfernt. Nach dem Verlassen der App ist dies nicht wiederherstellbar – nur ein Rückgängig (Undo) während der Sitzung kann den Schritt zurücknehmen.',
+        'discardAssets.message': 'Nach dem Verlassen der App ist dies nicht wiederherstellbar – nur ein Rückgängig (Undo) während der Sitzung kann den Schritt zurücknehmen.',
+        'discardAssets.listHeading': 'Diese Grafiken werden entfernt:',
+        'discardAssets.single': '{name} werden von der Karte und aus dem Verlauf entfernt.',
+        'discardAssets.keepsProjection': 'Die Projektion bleibt erhalten.',
+        'discardAssets.all': 'Alle',
+        'discardAssets.none': 'Keine',
+        'assetWarning.moreCats': '+{count} weitere',
         'assetName.tex': 'Terrain-Texturen',
         'assetName.extras': 'Extra-Symbole',
         'assetName.veg': 'Vegetations-Symbole',
         'assetName.mountain': 'Berg-Symbole',
         'assetName.building': 'Gebäude-Symbole',
+        'assetName.projection': 'Projektionsbild',
+        'assetShort.tex': 'Terrain',
+        'assetShort.veg': 'Vegetation',
+        'assetShort.mountain': 'Berge',
+        'assetShort.building': 'Gebäude',
+        'assetShort.extras': 'Extras',
+        'assetWarning.missingShort': 'Fehlt: {names}',
+        'missingList.notFound': 'Nicht gefunden',
+        'missingList.projectionHeading': 'Projektionsbild fehlt',
+        'missingList.projectionHint': 'Alternativ im Projektions-Werkzeug „{swap}“ verwenden.',
         'settings.hexNumbering': 'Nummerieren',
         'settings.hexNumberingDesc': 'Versieht die Waben mit Nummern.',
         'settings.hexNumberingHorizontal': 'Horizontale Zählung',
@@ -755,6 +770,7 @@ const TRANSLATIONS = {
         'changelog.title': 'Was ist neu',
         'changelog.showCommand': 'Was ist neu anzeigen',
         'changelog.viewOnline': 'Online ansehen',
+        'changelog.packButton': 'Base Pack ansehen',
         'menu.shareMap': 'Karte teilen',
         'menu.exportMap': 'Als Bild exportieren',
         'notice.noContentToPrint': 'Keine Karteninhalte zum Drucken vorhanden',
@@ -1025,7 +1041,6 @@ const TRANSLATIONS = {
         'menu.color': 'Color',
         'menu.emptyHex': 'Empty hex',
         'notice.assetMissing': 'Graphic not found: {name}',
-        'notice.assetsMissing': '{name} missing. Check the folder contents or path in {settings}!',
         'assetWarning.hideHints': 'Hide hints',
         'assetWarning.discard': 'Discard',
         'assetWarning.list': 'List',
@@ -1036,16 +1051,32 @@ const TRANSLATIONS = {
         'missingList.title': 'Missing graphics',
         'missingList.heading': '{name} missing',
         'missingList.none': 'No missing graphics.',
-        'missingList.found': 'Found in current path',
+        'missingList.found': 'Found in: {path}',
         'missingList.apply': 'Apply new paths',
-        'assetWarning.discardTip': 'Permanently remove all missing graphics (from the map and the history row)',
+        'assetWarning.discardTip': 'Permanently remove all missing hex graphics (from the map and the history row). The projection is kept.',
         'discardAssets.title': 'Discard missing graphics?',
-        'discardAssets.message': 'All missing graphics will be removed from the map and from the history. This cannot be undone after you leave the app — only an undo during the session can restore this step.',
+        'discardAssets.message': 'This cannot be undone after you leave the app — only an undo during the session can restore this step.',
+        'discardAssets.listHeading': 'These graphics will be removed:',
+        'discardAssets.single': '{name} will be removed from the map and from the history.',
+        'discardAssets.keepsProjection': 'The projection is kept.',
+        'discardAssets.all': 'All',
+        'discardAssets.none': 'None',
+        'assetWarning.moreCats': '+{count} more',
         'assetName.tex': 'Terrain textures',
         'assetName.extras': 'Extra symbols',
         'assetName.veg': 'Vegetation symbols',
         'assetName.mountain': 'Mountain symbols',
         'assetName.building': 'Building symbols',
+        'assetName.projection': 'Reference image',
+        'assetShort.tex': 'Terrain',
+        'assetShort.veg': 'Vegetation',
+        'assetShort.mountain': 'Mountains',
+        'assetShort.building': 'Buildings',
+        'assetShort.extras': 'Extras',
+        'assetWarning.missingShort': 'Missing: {names}',
+        'missingList.notFound': 'Not found',
+        'missingList.projectionHeading': 'Reference image missing',
+        'missingList.projectionHint': 'Alternatively use “{swap}” in the projection tool.',
         'settings.hexNumbering': 'Numbering',
         'settings.hexNumberingDesc': 'Hexes are labeled with numbers.',
         'settings.hexNumberingHorizontal': 'Horizontal counting',
@@ -1152,6 +1183,7 @@ const TRANSLATIONS = {
         'changelog.title': 'What\'s new',
         'changelog.showCommand': 'Show what\'s new',
         'changelog.viewOnline': 'View online',
+        'changelog.packButton': 'View the Base Pack',
         'menu.shareMap': 'Share map',
         'menu.exportMap': 'Export as image',
         'notice.noContentToPrint': 'No map content to print',
@@ -1400,7 +1432,6 @@ const TRANSLATIONS = {
         'menu.color': '颜色',
         'menu.emptyHex': '空六角格',
         'notice.assetMissing': '未找到图形：{name}',
-        'notice.assetsMissing': '{name}缺失。请在{settings}中检查文件夹内容或路径！',
         'assetWarning.hideHints': '隐藏提示',
         'assetWarning.discard': '丢弃',
         'assetWarning.list': '列出',
@@ -1411,16 +1442,32 @@ const TRANSLATIONS = {
         'missingList.title': '缺失的图形',
         'missingList.heading': '{name}缺失',
         'missingList.none': '没有缺失的图形。',
-        'missingList.found': '在当前路径中找到',
+        'missingList.found': '已找到于：{path}',
         'missingList.apply': '采用新路径',
-        'assetWarning.discardTip': '永久移除所有缺失的图形（从地图和历史栏中）',
+        'assetWarning.discardTip': '永久移除所有缺失的蜂窝图形（从地图和历史栏中）。投影将保留。',
         'discardAssets.title': '丢弃缺失的图形？',
-        'discardAssets.message': '所有缺失的图形将从地图和历史记录中移除。退出应用后将无法恢复——只有在本次会话中撤销才能还原此步骤。',
+        'discardAssets.message': '离开应用后无法恢复——只有在本次会话中撤销才能还原此步骤。',
+        'discardAssets.listHeading': '将移除以下图形：',
+        'discardAssets.single': '{name}将从地图和历史记录中移除。',
+        'discardAssets.keepsProjection': '投影将保留。',
+        'discardAssets.all': '全选',
+        'discardAssets.none': '全不选',
+        'assetWarning.moreCats': '+{count} 个',
         'assetName.tex': '地形纹理',
         'assetName.extras': '额外符号',
         'assetName.veg': '植被符号',
         'assetName.mountain': '山脉符号',
         'assetName.building': '建筑符号',
+        'assetName.projection': '参考图片',
+        'assetShort.tex': '地形',
+        'assetShort.veg': '植被',
+        'assetShort.mountain': '山脉',
+        'assetShort.building': '建筑',
+        'assetShort.extras': '附加',
+        'assetWarning.missingShort': '缺失：{names}',
+        'missingList.notFound': '未找到',
+        'missingList.projectionHeading': '参考图片缺失',
+        'missingList.projectionHint': '也可以在投影工具中使用“{swap}”。',
         'settings.hexNumbering': '编号',
         'settings.hexNumberingDesc': '六边形将标注数字。',
         'settings.hexNumberingHorizontal': '水平计数',
@@ -1521,6 +1568,7 @@ const TRANSLATIONS = {
         'changelog.title': '新功能',
         'changelog.showCommand': '显示新功能',
         'changelog.viewOnline': '在线查看',
+        'changelog.packButton': '查看 Base Pack',
         'menu.shareMap': '分享地图',
         'menu.exportMap': '导出为图片',
         'notice.noContentToPrint': '没有可打印的地图内容',
@@ -1769,7 +1817,6 @@ const TRANSLATIONS = {
         'menu.color': 'Цвет',
         'menu.emptyHex': 'Пустая сота',
         'notice.assetMissing': 'Графика не найдена: {name}',
-        'notice.assetsMissing': '{name} отсутствуют. Проверьте содержимое папки или путь в разделе «{settings}»!',
         'assetWarning.hideHints': 'Скрыть подсказки',
         'assetWarning.discard': 'Отбросить',
         'assetWarning.list': 'Список',
@@ -1780,16 +1827,32 @@ const TRANSLATIONS = {
         'missingList.title': 'Отсутствующие изображения',
         'missingList.heading': '{name} отсутствуют',
         'missingList.none': 'Нет отсутствующих изображений.',
-        'missingList.found': 'Найдено в текущей папке',
+        'missingList.found': 'Найдено в: {path}',
         'missingList.apply': 'Применить новые пути',
-        'assetWarning.discardTip': 'Безвозвратно удалить все отсутствующие изображения (с карты и из панели истории)',
+        'assetWarning.discardTip': 'Окончательно удалить всю отсутствующую графику ячеек (с карты и из строки истории). Проекция сохраняется.',
         'discardAssets.title': 'Отбросить отсутствующие изображения?',
-        'discardAssets.message': 'Все отсутствующие изображения будут удалены с карты и из истории. После выхода из приложения это нельзя будет отменить — восстановить этот шаг можно только отменой (undo) в течение сеанса.',
+        'discardAssets.message': 'После выхода из приложения это необратимо — отменить шаг можно только во время сеанса.',
+        'discardAssets.listHeading': 'Будет удалено:',
+        'discardAssets.single': '{name} будут удалены с карты и из истории.',
+        'discardAssets.keepsProjection': 'Проекция сохраняется.',
+        'discardAssets.all': 'Все',
+        'discardAssets.none': 'Ничего',
+        'assetWarning.moreCats': '+{count} ещё',
         'assetName.tex': 'Текстуры ландшафта',
         'assetName.extras': 'Дополнительные символы',
         'assetName.veg': 'Символы растительности',
         'assetName.mountain': 'Символы гор',
         'assetName.building': 'Символы зданий',
+        'assetName.projection': 'Фоновое изображение',
+        'assetShort.tex': 'Рельеф',
+        'assetShort.veg': 'Растительность',
+        'assetShort.mountain': 'Горы',
+        'assetShort.building': 'Здания',
+        'assetShort.extras': 'Дополнения',
+        'assetWarning.missingShort': 'Отсутствует: {names}',
+        'missingList.notFound': 'Не найдено',
+        'missingList.projectionHeading': 'Фоновое изображение отсутствует',
+        'missingList.projectionHint': 'Либо воспользуйтесь «{swap}» в инструменте проекции.',
         'settings.hexNumbering': 'Нумерация',
         'settings.hexNumberingDesc': 'Шестиугольники помечаются цифрами.',
         'settings.hexNumberingHorizontal': 'Горизонтальный счёт',
@@ -1890,6 +1953,7 @@ const TRANSLATIONS = {
         'changelog.title': 'Что нового',
         'changelog.showCommand': 'Показать, что нового',
         'changelog.viewOnline': 'Смотреть онлайн',
+        'changelog.packButton': 'Посмотреть Base Pack',
         'menu.shareMap': 'Поделиться картой',
         'menu.exportMap': 'Экспорт как изображение',
         'notice.noContentToPrint': 'Нет содержимого карты для печати',
@@ -2138,7 +2202,6 @@ const TRANSLATIONS = {
         'menu.color': '色',
         'menu.emptyHex': '空のヘクス',
         'notice.assetMissing': '画像が見つかりません: {name}',
-        'notice.assetsMissing': '{name}がありません。{settings}でフォルダーの内容またはパスを確認してください！',
         'assetWarning.hideHints': 'ヒントを非表示',
         'assetWarning.discard': '破棄',
         'assetWarning.list': '一覧',
@@ -2149,16 +2212,32 @@ const TRANSLATIONS = {
         'missingList.title': '欠落しているグラフィック',
         'missingList.heading': '{name}が欠落しています',
         'missingList.none': '欠落しているグラフィックはありません。',
-        'missingList.found': '現在のパスで見つかりました',
+        'missingList.found': '見つかった場所: {path}',
         'missingList.apply': '新しいパスを適用',
-        'assetWarning.discardTip': '欠落しているグラフィックをすべて完全に削除します（マップと履歴バーから）',
+        'assetWarning.discardTip': '不足しているヘクス画像をすべて完全に削除します（地図と履歴バーから）。投影は保持されます。',
         'discardAssets.title': '欠落しているグラフィックを破棄しますか？',
-        'discardAssets.message': '欠落しているすべてのグラフィックがマップと履歴から削除されます。アプリを終了すると元に戻せません。この操作を取り消せるのは、セッション中の取り消し（Undo）のみです。',
+        'discardAssets.message': 'アプリを終了すると元に戻せません。セッション中の取り消しのみがこの操作を戻せます。',
+        'discardAssets.listHeading': '次の画像が削除されます:',
+        'discardAssets.single': '{name}を地図と履歴から削除します。',
+        'discardAssets.keepsProjection': '投影は保持されます。',
+        'discardAssets.all': 'すべて',
+        'discardAssets.none': 'なし',
+        'assetWarning.moreCats': '他 {count} 件',
         'assetName.tex': '地形テクスチャ',
         'assetName.extras': '追加シンボル',
         'assetName.veg': '植生シンボル',
         'assetName.mountain': '山のシンボル',
         'assetName.building': '建物のシンボル',
+        'assetName.projection': '下絵画像',
+        'assetShort.tex': '地形',
+        'assetShort.veg': '植生',
+        'assetShort.mountain': '山',
+        'assetShort.building': '建物',
+        'assetShort.extras': 'その他',
+        'assetWarning.missingShort': '不足: {names}',
+        'missingList.notFound': '見つかりません',
+        'missingList.projectionHeading': '下絵画像が見つかりません',
+        'missingList.projectionHint': 'または投影ツールの「{swap}」を使用してください。',
         'settings.hexNumbering': '番号付け',
         'settings.hexNumberingDesc': '各ヘクスに番号を表示します。',
         'settings.hexNumberingHorizontal': '水平カウント',
@@ -2259,6 +2338,7 @@ const TRANSLATIONS = {
         'changelog.title': '新着情報',
         'changelog.showCommand': '新着情報を表示',
         'changelog.viewOnline': 'オンラインで見る',
+        'changelog.packButton': 'Base Pack を見る',
         'menu.shareMap': 'マップを共有',
         'menu.exportMap': '画像としてエクスポート',
         'notice.noContentToPrint': '印刷するマップの内容がありません',
@@ -2507,7 +2587,6 @@ const TRANSLATIONS = {
         'menu.color': 'Couleur',
         'menu.emptyHex': 'Hexagone vide',
         'notice.assetMissing': 'Graphique introuvable : {name}',
-        'notice.assetsMissing': '{name} manquants. Vérifiez le contenu du dossier ou le chemin dans {settings} !',
         'assetWarning.hideHints': 'Masquer les indications',
         'assetWarning.discard': 'Supprimer',
         'assetWarning.list': 'Lister',
@@ -2518,16 +2597,32 @@ const TRANSLATIONS = {
         'missingList.title': 'Graphiques manquants',
         'missingList.heading': '{name} manquants',
         'missingList.none': 'Aucun graphique manquant.',
-        'missingList.found': 'Trouvé dans le dossier actuel',
+        'missingList.found': 'Trouvé dans : {path}',
         'missingList.apply': 'Appliquer les nouveaux chemins',
-        'assetWarning.discardTip': 'Supprimer définitivement tous les graphiques manquants (de la carte et de la barre d’historique)',
+        'assetWarning.discardTip': 'Supprimer définitivement toutes les images d’hexagone manquantes (de la carte et de la barre d’historique). La projection est conservée.',
         'discardAssets.title': 'Supprimer les graphiques manquants ?',
-        'discardAssets.message': 'Tous les graphiques manquants seront retirés de la carte et de l’historique. Cette action est irréversible après la fermeture de l’application — seule une annulation (undo) pendant la session peut rétablir cette étape.',
+        'discardAssets.message': 'Cette action est irréversible après la fermeture de l’application — seule une annulation pendant la session peut la rétablir.',
+        'discardAssets.listHeading': 'Ces images seront supprimées :',
+        'discardAssets.single': '{name} seront supprimés de la carte et de l’historique.',
+        'discardAssets.keepsProjection': 'La projection est conservée.',
+        'discardAssets.all': 'Tout',
+        'discardAssets.none': 'Aucun',
+        'assetWarning.moreCats': '+{count} autres',
         'assetName.tex': 'Textures de terrain',
         'assetName.extras': 'Symboles supplémentaires',
         'assetName.veg': 'Symboles de végétation',
         'assetName.mountain': 'Symboles de montagne',
         'assetName.building': 'Symboles de bâtiment',
+        'assetName.projection': 'Image de référence',
+        'assetShort.tex': 'Terrain',
+        'assetShort.veg': 'Végétation',
+        'assetShort.mountain': 'Montagnes',
+        'assetShort.building': 'Bâtiments',
+        'assetShort.extras': 'Extras',
+        'assetWarning.missingShort': 'Manquant : {names}',
+        'missingList.notFound': 'Introuvable',
+        'missingList.projectionHeading': 'Image de référence manquante',
+        'missingList.projectionHint': 'Vous pouvez aussi utiliser « {swap} » dans l’outil de projection.',
         'settings.hexNumbering': 'Numérotation',
         'settings.hexNumberingDesc': 'Les hexagones sont numérotés.',
         'settings.hexNumberingHorizontal': 'Comptage horizontal',
@@ -2628,6 +2723,7 @@ const TRANSLATIONS = {
         'changelog.title': 'Nouveautés',
         'changelog.showCommand': 'Afficher les nouveautés',
         'changelog.viewOnline': 'Voir en ligne',
+        'changelog.packButton': 'Voir le Base Pack',
         'menu.shareMap': 'Partager la carte',
         'menu.exportMap': 'Exporter en image',
         'notice.noContentToPrint': 'Aucun contenu de carte à imprimer',
@@ -2876,10 +2972,9 @@ const TRANSLATIONS = {
         'menu.color': 'Cor',
         'menu.emptyHex': 'Hexágono vazio',
         'notice.assetMissing': 'Gráfico não encontrado: {name}',
-        'notice.assetsMissing': '{name} ausentes. Verifique o conteúdo da pasta ou o caminho em {settings}!',
         'assetWarning.hideHints': 'Ocultar avisos',
         'assetWarning.discard': 'Descartar',
-        'assetWarning.discardTip': 'Remover permanentemente todos os gráficos ausentes (do mapa e da barra de histórico)',
+        'assetWarning.discardTip': 'Remover definitivamente todos os gráficos de hexágono em falta (do mapa e da barra de histórico). A projeção é mantida.',
         'assetWarning.list': 'Listar',
         'assetWarning.listTip': 'Listar todos os gráficos ausentes',
         'assetWarning.missingFile': 'Ausente: {name}',
@@ -2888,15 +2983,31 @@ const TRANSLATIONS = {
         'missingList.title': 'Gráficos ausentes',
         'missingList.heading': '{name} ausentes',
         'missingList.none': 'Nenhum gráfico ausente.',
-        'missingList.found': 'Encontrado no caminho atual',
+        'missingList.found': 'Encontrado em: {path}',
         'missingList.apply': 'Aplicar novos caminhos',
         'discardAssets.title': 'Descartar gráficos ausentes?',
-        'discardAssets.message': 'Todos os gráficos ausentes serão removidos do mapa e do histórico. Isso não pode ser desfeito depois de sair do aplicativo — apenas um desfazer (undo) durante a sessão pode restaurar esta etapa.',
+        'discardAssets.message': 'Isto não pode ser desfeito depois de sair da aplicação — apenas um desfazer durante a sessão pode restaurar este passo.',
+        'discardAssets.listHeading': 'Estes gráficos serão removidos:',
+        'discardAssets.single': '{name} serão removidos do mapa e do histórico.',
+        'discardAssets.keepsProjection': 'A projeção é mantida.',
+        'discardAssets.all': 'Todos',
+        'discardAssets.none': 'Nenhum',
+        'assetWarning.moreCats': '+{count} mais',
         'assetName.tex': 'Texturas de terreno',
         'assetName.extras': 'Símbolos extra',
         'assetName.veg': 'Símbolos de vegetação',
         'assetName.mountain': 'Símbolos de montanha',
         'assetName.building': 'Símbolos de edifício',
+        'assetName.projection': 'Imagem de referência',
+        'assetShort.tex': 'Terreno',
+        'assetShort.veg': 'Vegetação',
+        'assetShort.mountain': 'Montanhas',
+        'assetShort.building': 'Edifícios',
+        'assetShort.extras': 'Extras',
+        'assetWarning.missingShort': 'Em falta: {names}',
+        'missingList.notFound': 'Não encontrado',
+        'missingList.projectionHeading': 'Imagem de referência ausente',
+        'missingList.projectionHint': 'Em alternativa, use “{swap}” na ferramenta de projeção.',
         'settings.hexNumbering': 'Numeração',
         'settings.hexNumberingDesc': 'Os hexágonos são numerados.',
         'settings.hexNumberingHorizontal': 'Contagem horizontal',
@@ -2997,6 +3108,7 @@ const TRANSLATIONS = {
         'changelog.title': 'Novidades',
         'changelog.showCommand': 'Mostrar novidades',
         'changelog.viewOnline': 'Ver online',
+        'changelog.packButton': 'Ver o Base Pack',
         'menu.shareMap': 'Compartilhar mapa',
         'menu.exportMap': 'Exportar como imagem',
         'notice.noContentToPrint': 'Nenhum conteúdo de mapa para imprimir',
@@ -3245,7 +3357,6 @@ const TRANSLATIONS = {
         'menu.color': '색상',
         'menu.emptyHex': '빈 육각형',
         'notice.assetMissing': '그래픽을 찾을 수 없습니다: {name}',
-        'notice.assetsMissing': '{name}이(가) 없습니다. {settings}에서 폴더 내용 또는 경로를 확인하세요!',
         'assetWarning.hideHints': '힌트 숨기기',
         'assetWarning.discard': '버리기',
         'assetWarning.list': '목록',
@@ -3256,16 +3367,32 @@ const TRANSLATIONS = {
         'missingList.title': '누락된 그래픽',
         'missingList.heading': '{name} 누락',
         'missingList.none': '누락된 그래픽이 없습니다.',
-        'missingList.found': '현재 경로에서 찾음',
+        'missingList.found': '찾은 위치: {path}',
         'missingList.apply': '새 경로 적용',
-        'assetWarning.discardTip': '누락된 모든 그래픽을 영구적으로 제거합니다(지도 및 기록 표시줄에서)',
+        'assetWarning.discardTip': '누락된 헥스 그래픽을 모두 영구적으로 제거합니다(지도와 기록 막대에서). 투영은 유지됩니다.',
         'discardAssets.title': '누락된 그래픽을 버릴까요?',
-        'discardAssets.message': '누락된 모든 그래픽이 지도와 기록에서 제거됩니다. 앱을 종료한 후에는 복구할 수 없으며, 세션 중 실행 취소(undo)로만 이 단계를 되돌릴 수 있습니다.',
+        'discardAssets.message': '앱을 종료한 뒤에는 되돌릴 수 없으며, 세션 중의 실행 취소로만 복구할 수 있습니다.',
+        'discardAssets.listHeading': '다음 그래픽이 제거됩니다:',
+        'discardAssets.single': '{name}을(를) 지도와 기록에서 제거합니다.',
+        'discardAssets.keepsProjection': '투영은 유지됩니다.',
+        'discardAssets.all': '모두',
+        'discardAssets.none': '없음',
+        'assetWarning.moreCats': '외 {count}개',
         'assetName.tex': '지형 텍스처',
         'assetName.extras': '추가 기호',
         'assetName.veg': '식생 기호',
         'assetName.mountain': '산 기호',
         'assetName.building': '건물 기호',
+        'assetName.projection': '참조 이미지',
+        'assetShort.tex': '지형',
+        'assetShort.veg': '식생',
+        'assetShort.mountain': '산',
+        'assetShort.building': '건물',
+        'assetShort.extras': '추가',
+        'assetWarning.missingShort': '누락: {names}',
+        'missingList.notFound': '찾을 수 없음',
+        'missingList.projectionHeading': '참조 이미지 없음',
+        'missingList.projectionHint': '또는 투영 도구에서 “{swap}”을 사용하세요.',
         'settings.hexNumbering': '번호 매기기',
         'settings.hexNumberingDesc': '헥스에 번호를 표시합니다.',
         'settings.hexNumberingHorizontal': '가로 카운트',
@@ -3366,6 +3493,7 @@ const TRANSLATIONS = {
         'changelog.title': '새로운 기능',
         'changelog.showCommand': '새로운 기능 표시',
         'changelog.viewOnline': '온라인에서 보기',
+        'changelog.packButton': 'Base Pack 보기',
         'menu.shareMap': '지도 공유',
         'menu.exportMap': '이미지로 내보내기',
         'notice.noContentToPrint': '인쇄할 지도 내용이 없습니다',
@@ -3614,10 +3742,9 @@ const TRANSLATIONS = {
         'menu.color': 'Color',
         'menu.emptyHex': 'Hexágono vacío',
         'notice.assetMissing': 'Gráfico no encontrado: {name}',
-        'notice.assetsMissing': 'Faltan {name}. Comprueba el contenido de la carpeta o la ruta en {settings}!',
         'assetWarning.hideHints': 'Ocultar avisos',
         'assetWarning.discard': 'Descartar',
-        'assetWarning.discardTip': 'Eliminar permanentemente todos los gráficos faltantes (del mapa y de la barra de historial)',
+        'assetWarning.discardTip': 'Eliminar definitivamente todos los gráficos de hexágono que faltan (del mapa y de la barra de historial). La proyección se conserva.',
         'assetWarning.list': 'Listar',
         'assetWarning.listTip': 'Listar todos los gráficos faltantes',
         'assetWarning.missingFile': 'Falta: {name}',
@@ -3626,15 +3753,31 @@ const TRANSLATIONS = {
         'missingList.title': 'Gráficos faltantes',
         'missingList.heading': '{name} faltan',
         'missingList.none': 'No faltan gráficos.',
-        'missingList.found': 'Encontrado en la ruta actual',
+        'missingList.found': 'Encontrado en: {path}',
         'missingList.apply': 'Aplicar nuevas rutas',
         'discardAssets.title': '¿Descartar los gráficos faltantes?',
-        'discardAssets.message': 'Todos los gráficos faltantes se eliminarán del mapa y del historial. Esto no se puede deshacer después de salir de la aplicación: solo deshacer (undo) durante la sesión puede restaurar este paso.',
+        'discardAssets.message': 'Esto no se puede deshacer después de salir de la aplicación: solo deshacer durante la sesión puede restaurar este paso.',
+        'discardAssets.listHeading': 'Se eliminarán estos gráficos:',
+        'discardAssets.single': '{name} se eliminarán del mapa y del historial.',
+        'discardAssets.keepsProjection': 'La proyección se conserva.',
+        'discardAssets.all': 'Todos',
+        'discardAssets.none': 'Ninguno',
+        'assetWarning.moreCats': '+{count} más',
         'assetName.tex': 'Texturas de terreno',
         'assetName.extras': 'Símbolos adicionales',
         'assetName.veg': 'Símbolos de vegetación',
         'assetName.mountain': 'Símbolos de montaña',
         'assetName.building': 'Símbolos de edificio',
+        'assetName.projection': 'Imagen de referencia',
+        'assetShort.tex': 'Terreno',
+        'assetShort.veg': 'Vegetación',
+        'assetShort.mountain': 'Montañas',
+        'assetShort.building': 'Edificios',
+        'assetShort.extras': 'Extras',
+        'assetWarning.missingShort': 'Falta: {names}',
+        'missingList.notFound': 'No encontrado',
+        'missingList.projectionHeading': 'Falta la imagen de referencia',
+        'missingList.projectionHint': 'También puede usar «{swap}» en la herramienta de proyección.',
         'settings.hexNumbering': 'Numeración',
         'settings.hexNumberingDesc': 'Los hexágonos se numeran.',
         'settings.hexNumberingHorizontal': 'Conteo horizontal',
@@ -3735,6 +3878,7 @@ const TRANSLATIONS = {
         'changelog.title': 'Novedades',
         'changelog.showCommand': 'Mostrar novedades',
         'changelog.viewOnline': 'Ver en línea',
+        'changelog.packButton': 'Ver el Base Pack',
         'menu.shareMap': 'Compartir mapa',
         'menu.exportMap': 'Exportar como imagen',
         'notice.noContentToPrint': 'No hay contenido del mapa para imprimir',
@@ -3983,7 +4127,6 @@ const TRANSLATIONS = {
         'menu.color': 'Kolor',
         'menu.emptyHex': 'Pusty heks',
         'notice.assetMissing': 'Nie znaleziono grafiki: {name}',
-        'notice.assetsMissing': 'Brak: {name}. Sprawdź zawartość folderu lub ścieżkę w {settings}!',
         'assetWarning.hideHints': 'Ukryj wskazówki',
         'assetWarning.discard': 'Odrzuć',
         'assetWarning.list': 'Lista',
@@ -3994,16 +4137,32 @@ const TRANSLATIONS = {
         'missingList.title': 'Brakujące grafiki',
         'missingList.heading': 'Brakujące: {name}',
         'missingList.none': 'Brak brakujących grafik.',
-        'missingList.found': 'Znaleziono w bieżącej ścieżce',
+        'missingList.found': 'Znaleziono w: {path}',
         'missingList.apply': 'Zastosuj nowe ścieżki',
-        'assetWarning.discardTip': 'Trwale usuń wszystkie brakujące grafiki (z mapy i paska historii)',
+        'assetWarning.discardTip': 'Trwale usuń wszystkie brakujące grafiki heksów (z mapy i paska historii). Projekcja zostaje zachowana.',
         'discardAssets.title': 'Odrzucić brakujące grafiki?',
-        'discardAssets.message': 'Wszystkie brakujące grafiki zostaną usunięte z mapy i z historii. Po zamknięciu aplikacji nie można tego cofnąć — tylko cofnięcie (undo) w trakcie sesji może przywrócić ten krok.',
+        'discardAssets.message': 'Po zamknięciu aplikacji nie można tego cofnąć — tylko cofnięcie w trakcie sesji przywróci ten krok.',
+        'discardAssets.listHeading': 'Te grafiki zostaną usunięte:',
+        'discardAssets.single': '{name} zostaną usunięte z mapy i z historii.',
+        'discardAssets.keepsProjection': 'Projekcja zostaje zachowana.',
+        'discardAssets.all': 'Wszystko',
+        'discardAssets.none': 'Nic',
+        'assetWarning.moreCats': '+{count} więcej',
         'assetName.tex': 'Tekstury terenu',
         'assetName.extras': 'Dodatkowe symbole',
         'assetName.veg': 'Symbole roślinności',
         'assetName.mountain': 'Symbole gór',
         'assetName.building': 'Symbole budynków',
+        'assetName.projection': 'Obraz odniesienia',
+        'assetShort.tex': 'Teren',
+        'assetShort.veg': 'Roślinność',
+        'assetShort.mountain': 'Góry',
+        'assetShort.building': 'Budynki',
+        'assetShort.extras': 'Dodatki',
+        'assetWarning.missingShort': 'Brakuje: {names}',
+        'missingList.notFound': 'Nie znaleziono',
+        'missingList.projectionHeading': 'Brak obrazu odniesienia',
+        'missingList.projectionHint': 'Albo użyj „{swap}” w narzędziu projekcji.',
         'settings.hexNumbering': 'Numerowanie',
         'settings.hexNumberingDesc': 'Sześciokąty są oznaczane numerami.',
         'settings.hexNumberingHorizontal': 'Liczenie poziome',
@@ -4104,6 +4263,7 @@ const TRANSLATIONS = {
         'changelog.title': 'Co nowego',
         'changelog.showCommand': 'Pokaż co nowego',
         'changelog.viewOnline': 'Zobacz online',
+        'changelog.packButton': 'Zobacz Base Pack',
         'menu.shareMap': 'Udostępnij mapę',
         'menu.exportMap': 'Eksportuj jako obraz',
         'notice.noContentToPrint': 'Brak zawartości mapy do wydrukowania',
@@ -4352,7 +4512,6 @@ const TRANSLATIONS = {
         'menu.color': 'Colore',
         'menu.emptyHex': 'Esagono vuoto',
         'notice.assetMissing': 'Grafica non trovata: {name}',
-        'notice.assetsMissing': '{name} mancanti. Controlla il contenuto della cartella o il percorso in {settings}!',
         'assetWarning.hideHints': 'Nascondi avvisi',
         'assetWarning.discard': 'Scarta',
         'assetWarning.list': 'Elenca',
@@ -4363,16 +4522,32 @@ const TRANSLATIONS = {
         'missingList.title': 'Grafiche mancanti',
         'missingList.heading': '{name} mancanti',
         'missingList.none': 'Nessuna grafica mancante.',
-        'missingList.found': 'Trovato nel percorso attuale',
+        'missingList.found': 'Trovato in: {path}',
         'missingList.apply': 'Applica i nuovi percorsi',
-        'assetWarning.discardTip': 'Rimuovi definitivamente tutte le grafiche mancanti (dalla mappa e dalla barra della cronologia)',
+        'assetWarning.discardTip': 'Rimuovi definitivamente tutte le grafiche degli esagoni mancanti (dalla mappa e dalla barra della cronologia). La proiezione viene mantenuta.',
         'discardAssets.title': 'Scartare le grafiche mancanti?',
-        'discardAssets.message': 'Tutte le grafiche mancanti verranno rimosse dalla mappa e dalla cronologia. Questa operazione non è reversibile dopo aver chiuso l’app: solo un annullamento (undo) durante la sessione può ripristinare questo passaggio.',
+        'discardAssets.message': 'Dopo aver chiuso l’applicazione non è più reversibile: solo un annulla durante la sessione può ripristinare il passaggio.',
+        'discardAssets.listHeading': 'Queste grafiche verranno rimosse:',
+        'discardAssets.single': '{name} verranno rimossi dalla mappa e dalla cronologia.',
+        'discardAssets.keepsProjection': 'La proiezione viene mantenuta.',
+        'discardAssets.all': 'Tutti',
+        'discardAssets.none': 'Nessuno',
+        'assetWarning.moreCats': '+{count} altri',
         'assetName.tex': 'Texture terreno',
         'assetName.extras': 'Simboli extra',
         'assetName.veg': 'Simboli di vegetazione',
         'assetName.mountain': 'Simboli di montagna',
         'assetName.building': 'Simboli di edificio',
+        'assetName.projection': 'Immagine di riferimento',
+        'assetShort.tex': 'Terreno',
+        'assetShort.veg': 'Vegetazione',
+        'assetShort.mountain': 'Montagne',
+        'assetShort.building': 'Edifici',
+        'assetShort.extras': 'Extra',
+        'assetWarning.missingShort': 'Mancante: {names}',
+        'missingList.notFound': 'Non trovato',
+        'missingList.projectionHeading': 'Immagine di riferimento mancante',
+        'missingList.projectionHint': 'In alternativa usa «{swap}» nello strumento di proiezione.',
         'settings.hexNumbering': 'Numerazione',
         'settings.hexNumberingDesc': 'Gli esagoni vengono numerati.',
         'settings.hexNumberingHorizontal': 'Conteggio orizzontale',
@@ -4473,6 +4648,7 @@ const TRANSLATIONS = {
         'changelog.title': 'Novità',
         'changelog.showCommand': 'Mostra novità',
         'changelog.viewOnline': 'Vedi online',
+        'changelog.packButton': 'Guarda il Base Pack',
         'menu.shareMap': 'Condividi mappa',
         'menu.exportMap': 'Esporta come immagine',
         'notice.noContentToPrint': 'Nessun contenuto della mappa da stampare',
@@ -4988,6 +5164,8 @@ const CHANGELOG_URL = ''; // e.g. your GitHub releases page (empty = hidden)
 // Donation link (same Ko-fi as in Settings). Placeholder for now — a pack-specific
 // link can replace it later. Single source, reused by the settings donate button.
 const KOFI_URL = 'https://ko-fi.com/christophwerner';
+// Store page of the Base Pack. Empty = the button stays hidden; fill it in to show it.
+const PACK_URL = '';
 // Release notes shown once after an update (newest first). Each block is a heading
 // (h), a paragraph (p) or a bullet list (ul). Add a new entry on top each release.
 const CHANGELOG = [
@@ -4995,64 +5173,43 @@ const CHANGELOG = [
         version: '2.0.0',
         title: '2.0 is here!',
         blocks: [
-            { p: `The most-requested feature has arrived: your own graphics – use your own artwork as hex textures and symbols. On top of that, a projection tool for tracing, a handy tool history, and a lot more. Here are the highlights since 1.1:` },
-            { h: `✨ Your own graphics – the big highlight` },
+            { p: `2.0 is the biggest update so far. The headline: you can now use your own graphics on the map. Everything new since 1.1:` },
+            { h: `✨ New` },
             { ul: [
-                `Use your own symbols and hex textures straight from folders in your vault – for vegetation, mountains, buildings, extras, and hex backgrounds.`,
-                `Your graphics scale to fill the hex, and a new "clip to hex shape" option lets symbols either stay neatly inside the hex or overhang for a more organic look (textures always stay inside).`,
-                `Thumbnail previews right in the selection menu, instead of just names.`,
-                `Recolor custom SVG symbols (for SVGs saved as a "compound path").`,
-                `Textures automatically get a matching base color (water → blues, mountains → grey/brown) – so hexes look great even before a texture loads, or when one is missing.`,
-                `Missing your graphics? No problem – the map keeps working, and a placeholder marks exactly where. These markers show only while editing – never in your exported images – and you can hide them with a toggle. A notice bar names any missing categories at a glance.`,
-                `If you add or change graphics on disk, the map picks them up live.`,
-            ] },
-            { h: `🖼️ Projection – trace over a reference image` },
-            { ul: [
-                `Load any image from your vault as a semi-transparent overlay and draw your map right on top of it.`,
-                `Move, scale, and rotate it freely – drag the corners to scale, the sides to rotate – with a movable pivot point for precise placement.`,
-                `Set its transparency, show or hide it, and choose whether it sits behind your hexes or above their fills (your symbols always stay on top).`,
-                `Clip it to your drawn hexes, and decide whether it appears in exports and prints.`,
-                `New "empty hex" fill (under System, next to Color): draw hexes with no fill so a background projection shows through and only your symbols sit on top — borders, coordinates and region borders still apply.`,
-            ] },
-            { h: `🌊 Rivers & roads – more control over their course` },
-            { ul: [
-                `Choose how a river or road runs: through the hex centers, along the hex edges, or both combined.`,
-                `Place fine control points – including on hex corners – to shape precise, smooth curves.`,
-                `Drag one end onto its neighbor to merge them into one, and pick pointed or rounded ends.`,
-            ] },
-            { h: `🎨 Get started fast – and help keep Hex Cartographer free` },
-            { p: `Hex Cartographer is free, and it'll stay that way. Keeping it running and adding new features takes a lot of time, though – so I've built something I'm genuinely proud of: my very first Hex Cartographer graphics pack.` },
-            { p: `The art is ready to use, carefully prepared, and covers most of what you need for vibrant, colorful maps right out of the box – perfect if you just can't wait to dive in and start mapping with graphics. And if you love making your own, it's a great template and reference to build your own symbols and textures from.` },
-            { p: `Picking up the pack is a simple, rewarding way to support my work – and it directly helps keep the plugin free and the updates coming for everyone. Think of it as buying me a coffee – and getting a full art pack in return. To buy me a coffee, click the button at the bottom of this window.` },
-            { h: `⚡ Tool history – your recent picks, one click away` },
-            { ul: [
-                `Every drawing tool now keeps your recently used settings – variant and colors, or color and texture – as a little row of quick-pick buttons under the toolbar. Re-apply a look with a single click, no menu needed. Remembered per map.`,
-                `Hover a drawing tool, a recent pick, or a menu entry to see its current graphic as a large preview – with an adjustable preview size in the settings.`,
-            ] },
-            { h: `🧩 More tools & symbols` },
-            { ul: [
+                `Use your own graphics: put images in a vault folder and paint with them – as hex surfaces and as symbols for vegetation, mountains, buildings and extras.`,
+                `If a graphic is ever missing, the hex shows a marker you can simply paint over – your map keeps working.`,
+                `Trace over a reference image: load any picture, place it freely, draw your map on top.`,
+                `Empty hexes: hexes without a fill, so a background image shows through and only your symbols sit on top.`,
+                `Choose how rivers and roads run – through the hex centers, along the edges, or both.`,
+                `Shape their course with control points, also on hex corners, and merge two ends into one.`,
+                `Tool eyedropper: click a hex to pick up its graphic or color for the tool you are using.`,
+                `Recently used: every drawing tool keeps your last settings one click away.`,
+                `Hover preview: point at a tool and see what it will paint.`,
                 `New symbols: cactus, deciduous forest, coniferous forest, volcano, crossed swords.`,
-                `New tool eyedropper: click a hex to pick up its graphic or color for the active tool – just like the fill and eraser modes.`,
-                `Borders now have an adjustable width, and the fill tool handles even very large enclosed areas – the old size limit is gone.`,
-                `A dedicated options row for the river/road/border tools with clear labels (width, dashes) and +/– buttons – finger-friendly on tablet and phone, with a pop-up to type exact values on mobile.`,
-                `When a symbol's color is very light, it gets a subtly darker backdrop so it always stays visible.`,
+                `Delete text with a click, using the Text tool and the eraser.`,
+                `Undo and redo on touch: two-finger tap undoes, three-finger tap redoes.`,
+                `Sync safety net: if Obsidian Sync creates a conflicting copy of a map, you are told and can compare both versions before keeping one.`,
             ] },
-            { h: `📝 Text & handling` },
+            { h: `⚡ Better` },
             { ul: [
-                `Undo and redo on touch devices – no buttons needed: two-finger tap to undo, three-finger tap to redo.`,
-                `Delete text with a click: turn on the Text tool + Eraser → click a text, gone. New texts start in black, and your last-used text settings are remembered.`,
-                `Zoom & view are remembered per device (desktop, tablet, phone).`,
-                `Faster loading of large maps.`,
+                `Large maps stay smooth while panning and zooming.`,
+                `Large maps open faster.`,
+                `Borders have an adjustable width.`,
+                `The fill tool handles very large enclosed areas – the old size limit is gone.`,
+                `River, road and border settings sit in their own row with clear labels; on phone and tablet you can type exact values.`,
+                `Light symbol colors get a subtle darker backdrop so they stay visible.`,
+                `Zoom and view are remembered per device.`,
+                `Changes in your graphics folder show up right away – add, replace or delete files and the map follows.`,
             ] },
-            { h: `🛡️ Safer than ever` },
+            { h: `🛡️ Fixed` },
             { ul: [
-                `Your work is protected: saving has been hardened so a map can't be lost – or corrupted by Obsidian Sync merging files between devices while you're editing.`,
-                `In the rare event Sync creates a conflicting copy of a map, it's detected automatically – so you can compare both versions and confidently keep the right one.`,
+                `Maps are protected while Obsidian Sync merges files between devices – a map can no longer be damaged or lost while you edit.`,
+                `Plus many smaller fixes across the plugin.`,
             ] },
-            { h: `🔧 And more` },
-            { ul: [
-                `Plus plenty of smaller improvements, optimizations, and bug fixes across the whole plugin.`,
-            ] },
+            { h: `🎨 The Base Pack — Hand-Painted Art for Your Maps` },
+            { p: `Want to start right away, without preparing artwork first? The Base Pack is a ready-made art set for the plugin, drawn entirely by me – no AI involved.` },
+            { p: `It adds illustrated hex patterns that give your map a painted look instead of flat color, and every built-in symbol as a finished illustration, most of them in several variants – added alongside the originals, nothing is replaced. New motifs come with it too, such as forests, mountains and volcanoes.` },
+            { p: `The plugin is free and stays free. The pack is optional – and it is what pays for the time that goes into Hex Cartographer. Take a look.` },
             { p: `Thanks to everyone for your feedback and requests – happy map-making! 🗺️` },
         ],
     },
@@ -5091,6 +5248,9 @@ class ChangelogModal extends Modal {
         }
         footer.createDiv({ attr: { style: 'flex: 1;' } });
         // Donation call-to-action (placeholder link -> Ko-fi, same as Settings).
+        if (PACK_URL) {
+            footer.createEl('a', { text: '🎨 ' + t('changelog.packButton'), cls: 'mod-cta', attr: { href: PACK_URL, target: '_blank', style: 'text-decoration: none;' } });
+        }
         footer.createEl('a', { text: '☕ ' + t('settings.donateButton'), cls: 'mod-cta', attr: { href: KOFI_URL, target: '_blank', style: 'text-decoration: none;' } });
         const ok = footer.createEl('button', { text: 'OK', cls: 'mod-cta' });
         ok.onclick = () => this.close();
@@ -9059,12 +9219,11 @@ class HexCartographerView extends ItemView {
             this.updateToolbarState(toolbar);
         };
 
-        const visBtn = this.createToolButton(topRow, { icon: this.borderSettings.visible ? 'eye' : 'eye-off', title: t('tooltip.borderVisibility') });
-        visBtn.style.opacity = this.borderSettings.visible ? '1' : '0.4';
+        const visBtn = this.createToolButton(topRow, { icon: 'eye', title: t('tooltip.borderVisibility') });
+        this._styleVisToggle(visBtn, !this.borderSettings.visible);
         visBtn.onclick = () => {
             this.borderSettings.visible = !this.borderSettings.visible;
-            setIcon(visBtn, this.borderSettings.visible ? 'eye' : 'eye-off');
-            visBtn.style.opacity = this.borderSettings.visible ? '1' : '0.4';
+            this._styleVisToggle(visBtn, !this.borderSettings.visible);
             this.render();
             this.requestSave();
         };
@@ -9263,10 +9422,7 @@ class HexCartographerView extends ItemView {
         this.updateConflictBar();
         if (this.editContent) this.editContent.style.display = this.editMode ? 'contents' : 'none';
 
-        if (this.borderVisBtn) {
-            setIcon(this.borderVisBtn, this.borderSettings.visible ? 'eye' : 'eye-off');
-            this.borderVisBtn.style.opacity = this.borderSettings.visible ? '1' : '0.4';
-        }
+        this._styleVisToggle(this.borderVisBtn, !this.borderSettings.visible);
 
         if (this.riverWidthInput) this.riverWidthInput.value = this.riverSettings.width.toString();
         if (this.roadWidthInput) this.roadWidthInput.value = this.roadSettings.width.toString();
@@ -13028,16 +13184,24 @@ class HexCartographerView extends ItemView {
         if (has) this._syncProjectionInputs();
     }
 
+    // Shared look of the show/hide toggles (projection, borders): closed eye plus a
+    // highlighted background, so "hidden" reads at a glance instead of a pale icon.
+    _styleVisToggle(btn, hidden) {
+        if (!btn) return;
+        setIcon(btn, hidden ? 'eye-closed' : 'eye');
+        btn.style.background = hidden ? PICKER_ACTIVE_BG : BUTTON_BG_DEFAULT;
+        btn.style.opacity = '1';
+    }
+
     // The show/hide toggle lives in the toolbar (always visible), so its state is refreshed
     // on every toolbar update — not only while the projection tool is active.
     _updateProjectionVisButton() {
         if (!this.projVisBtn) return;
         const has = !!this.data.projection;
         const hidden = has && this.data.projection.visible === false;
+        this._styleVisToggle(this.projVisBtn, hidden);
         this.projVisBtn.disabled = !has;
-        this.projVisBtn.style.opacity = has ? '1' : '0.4';
-        setIcon(this.projVisBtn, hidden ? 'eye-closed' : 'eye');
-        this.projVisBtn.style.background = hidden ? PICKER_ACTIVE_BG : BUTTON_BG_DEFAULT;
+        this.projVisBtn.style.opacity = has ? '1' : '0.4'; // nothing to show -> greyed out
         this.projVisBtn.setAttribute('title', t('projection.visibility'));
     }
 
@@ -13203,13 +13367,17 @@ class HexCartographerView extends ItemView {
             }
         }
 
+        // The reference image has no category key, so it is tracked on its own — without
+        // this, a missing one would raise no warning at all.
+        const projMissing = this.isProjectionMissing();
+        const projName = projMissing ? this.projectionFileName() : '';
         const hidden = !!this.data.hideAssetWarnings;
-        const sig = [...missing].sort().join(',') + '|hide:' + (hidden ? 1 : 0);
+        const sig = [...missing].sort().join(',') + '|proj:' + projName + '|hide:' + (hidden ? 1 : 0);
         if (sig === this._assetWarnSig) return;
         this._assetWarnSig = sig;
 
         this.assetWarningBar.empty();
-        if (missing.size === 0) {
+        if (missing.size === 0 && !projMissing) {
             this.assetWarningBar.style.display = 'none';
             return;
         }
@@ -13218,17 +13386,28 @@ class HexCartographerView extends ItemView {
         // … prüfen!"), so the settings hint appears only once. The "hide hints" checkbox
         // sits inline at the start; when hints are hidden only the checkbox remains (the
         // sentence and its "|" separator are suppressed until hints are shown again).
+        // One row: what is missing on the left, every control on the right. The message names
+        // categories only — which file it is belongs in the list, not in the bar.
         const cats = USER_ASSET_CATEGORIES.filter(c => missing.has(c.id));
-        if (cats.length > 0) {
-            const line = this.assetWarningBar.createDiv();
-            this.buildHideHintsToggle(line);
-            this.buildListMissingButton(line);    // right after the "hide hints" toggle
-            if (!hidden) {
-                line.createSpan({ text: '|', attr: { style: 'margin: 0 8px; opacity: 0.85;' } });
-                const names = cats.map(c => t('assetName.' + c.id)).join(', ');
-                this.buildAssetWarningLine(line, names);
+        const line = this.assetWarningBar.createDiv({ attr: { style: 'display: flex; align-items: center; gap: 8px;' } });
+        if (!hidden) {
+            // Three names at most — the rest is a count, so the bar stays one line whatever
+            // number of categories exists later on.
+            const shown = cats.slice(0, 3).map(c => t('assetShort.' + c.id));
+            if (cats.length > 3) shown.push(t('assetWarning.moreCats').replace('{count}', cats.length - 3));
+            const names = shown.join(', ');
+            const parts = [];
+            if (names) parts.push(t('assetWarning.missingShort').replace('{names}', names));
+            if (projMissing) {
+                parts.push(names ? t('tooltip.projection')
+                    : t('assetWarning.missingShort').replace('{names}', t('tooltip.projection')));
             }
+            line.createSpan({ text: parts.join('  |  ') });
         }
+        const controls = line.createDiv({ attr: { style: 'margin-left: auto; display: flex; align-items: center; gap: 8px; flex: none;' } });
+        this.buildListMissingButton(controls);
+        this.buildSettingsButton(controls);
+        this.buildHideHintsToggle(controls);  // an option, so it sits last
     }
 
     // Checkbox that hides the missing-graphic icons on the map without stopping the
@@ -13258,13 +13437,13 @@ class HexCartographerView extends ItemView {
         const tip = t('assetWarning.listTip');
         const btn = lineEl.createEl('button', {
             text: t('assetWarning.list'),
-            attr: { title: tip, style: 'margin-left: 10px; ' + this.warningBarButtonStyle() },
+            attr: { title: tip, style: this.warningBarButtonStyle() },
         });
         btn.onclick = () => new MissingAssetsModal(
             this.app,
             this.collectMissingAssets(),
-            (remaps) => this.applyAssetRemaps(remaps),
-            () => new DiscardAssetsModal(this.app, () => this.discardMissingAssets()).open(),
+            (remaps, projPath) => this.applyAssetRemaps(remaps, projPath),
+            () => new DiscardAssetsModal(this.app, this.missingCategoryCounts(), (ids) => this.discardMissingAssets(ids)).open(),
         ).open();
     }
 
@@ -13321,6 +13500,56 @@ class HexCartographerView extends ItemView {
     // All missing graphics on the map, grouped by category and deduped by key:
     // [{ id, items: [{ name, key, foundKey }] }] in category order, names sorted per the UI language.
     // foundKey = a same-named graphic in the category's current folder (moved/reorganised), else null.
+    // File name of the reference image, without its folders.
+    projectionFileName() {
+        const p = this.data.projection;
+        return p && p.path ? (p.path.split('/').pop() || '') : '';
+    }
+
+    // Does the reference image still resolve in the vault? A plain lookup, cheap enough to
+    // run on every render. Also true while the projection is hidden — the file is gone either way.
+    isProjectionMissing() {
+        const p = this.data.projection;
+        return !!(p && p.path && !this.app.vault.getAbstractFileByPath(p.path));
+    }
+
+    // Same as above plus the search for a replacement. Walks all vault files, so it runs
+    // on demand only (when the list is opened), never per frame.
+    missingProjectionInfo() {
+        if (!this.isProjectionMissing()) return null;
+        const path = this.data.projection.path;
+        return { path, name: this.projectionFileName(), foundPath: this.findProjectionPath(path) };
+    }
+
+    // Same file name somewhere else in the vault: the image was kept but its folder moved.
+    // Returns the new vault path, or null.
+    findProjectionPath(oldPath) {
+        const base = (oldPath.split('/').pop() || '').toLowerCase();
+        if (!base) return null;
+        for (const f of this.app.vault.getFiles()) {
+            if (f.path !== oldPath && (f.name || '').toLowerCase() === base) return f.path;
+        }
+        return null;
+    }
+
+    // Missing graphics per category, for the discard dialog. The projection is left out —
+    // discarding never touches it.
+    missingCategoryCounts() {
+        const byCat = new Map();
+        for (const h of Object.values(this.data.hexes)) {
+            for (const key of this.missingAssetsOnHex(h)) {
+                const cat = this.plugin.getCategoryForKey(key);
+                if (!cat) continue;
+                const keys = byCat.get(cat.id) || new Set();
+                keys.add(key);
+                byCat.set(cat.id, keys);
+            }
+        }
+        return USER_ASSET_CATEGORIES
+            .filter(c => byCat.has(c.id))
+            .map(c => ({ id: c.id, name: t('assetName.' + c.id), count: byCat.get(c.id).size }));
+    }
+
     collectMissingAssets() {
         const byCat = {}; // id -> Map(key -> item)
         const add = (key) => {
@@ -13328,16 +13557,38 @@ class HexCartographerView extends ItemView {
             const cat = this.plugin.getCategoryForKey(key);
             if (!cat) return;
             const m = byCat[cat.id] || (byCat[cat.id] = new Map());
-            if (!m.has(key)) m.set(key, { name: this.missingAssetLabel(key), key, foundKey: this.findCurrentPathKey(key, cat.id) });
+            if (m.has(key)) return;
+            const foundKey = this.findCurrentPathKey(key, cat.id);
+            // The map stores keys without a file extension, so the name can only carry one
+            // once the file has been found again.
+            const ext = foundKey ? this.assetExtFor(foundKey, cat.id) : '';
+            m.set(key, {
+                name: this.missingAssetLabel(key) + (ext ? '.' + ext : ''),
+                key, foundKey,
+                foundDir: foundKey ? dirOf(this.missingAssetLabel(foundKey)) : null, // shown once per block
+            });
         };
         for (const h of Object.values(this.data.hexes)) { for (const key of this.missingAssetsOnHex(h)) add(key); }
         const out = [];
         for (const cat of USER_ASSET_CATEGORIES) {
             if (!byCat[cat.id]) continue;
             const items = [...byCat[cat.id].values()].sort((a, b) => a.name.localeCompare(b.name, currentLanguage));
-            out.push({ id: cat.id, items });
+            out.push(Object.assign({ id: cat.id }, groupByFoundDir(items)));
+        }
+        // Not a user-asset key, so it rides along as its own group at the end.
+        const proj = this.missingProjectionInfo();
+        if (proj) {
+            const item = Object.assign({}, proj, { foundDir: proj.foundPath ? dirOf(proj.foundPath) : null });
+            out.push(Object.assign({ id: 'projection', isProjection: true }, groupByFoundDir([item])));
         }
         return out;
+    }
+
+    // File extension of a registered graphic — the map itself stores none.
+    assetExtFor(key, catId) {
+        const reg = this.plugin.getRegistry(catId);
+        const asset = reg && reg.assets && reg.assets.get(key);
+        return asset && asset.ext ? asset.ext : '';
     }
 
     // A currently-registered graphic in the same category with the same filename (basename): the
@@ -13356,18 +13607,26 @@ class HexCartographerView extends ItemView {
     // Repoints missing graphics that were found again under a new path to their new key, across all
     // hexes and tool-history slots. `remaps` is a Map(oldKey -> newKey). Explicit user action (the
     // "apply new paths" button), never automatic. Undoable in one step; persisted.
-    applyAssetRemaps(remaps) {
-        if (!remaps || remaps.size === 0) return 0;
+    applyAssetRemaps(remaps, projectionPath) {
+        const rm = remaps || new Map();
+        if (rm.size === 0 && !projectionPath) return 0;
         this.pushHistory(); // snapshot map + tool history first, so one undo reverts the remap
         let changed = 0;
+        if (projectionPath && this.data.projection) {
+            this.data.projection.path = projectionPath;
+            this._projectionImgPath = null;
+            this._projectionMissing = false;
+            this.loadProjectionImage();
+            changed++;
+        }
         for (const h of Object.values(this.data.hexes)) {
-            if (h.texture && remaps.has(h.texture)) { h.texture = remaps.get(h.texture); changed++; }
-            for (const sd of HEX_SYMBOL_SLOTS) if (h[sd.slot] && remaps.has(h[sd.slot])) { h[sd.slot] = remaps.get(h[sd.slot]); changed++; }
+            if (h.texture && rm.has(h.texture)) { h.texture = rm.get(h.texture); changed++; }
+            for (const sd of HEX_SYMBOL_SLOTS) if (h[sd.slot] && rm.has(h[sd.slot])) { h[sd.slot] = rm.get(h[sd.slot]); changed++; }
         }
         for (const g of Object.keys(this.toolHistory)) {
             for (const e of this.toolHistory[g]) {
-                if (e.variant && remaps.has(e.variant)) { e.variant = remaps.get(e.variant); changed++; }
-                if (e.texture && remaps.has(e.texture)) { e.texture = remaps.get(e.texture); changed++; }
+                if (e.variant && rm.has(e.variant)) { e.variant = rm.get(e.variant); changed++; }
+                if (e.texture && rm.has(e.texture)) { e.texture = rm.get(e.texture); changed++; }
             }
         }
         if (!changed) { this.history.pop(); return 0; }
@@ -13381,10 +13640,11 @@ class HexCartographerView extends ItemView {
     }
 
     // A tool-history slot that points at a missing user graphic (a symbol variant or a hex texture).
-    historyEntryMissing(entry) {
+    historyEntryMissing(entry, test) {
+        const bad = test || ((k) => this.isUnresolvedUserKey(k));
         if (!entry) return false;
-        if (entry.variant && this.isUnresolvedUserKey(entry.variant)) return true;
-        if (entry.texture && this.isUnresolvedUserKey(entry.texture)) return true;
+        if (entry.variant && bad(entry.variant)) return true;
+        if (entry.texture && bad(entry.texture)) return true;
         return false;
     }
 
@@ -13392,14 +13652,23 @@ class HexCartographerView extends ItemView {
     // hexes and from the tool-history slots, so the warnings disappear. A hex left with nothing is
     // deleted. Undoable in one step during the session (the snapshot carries the tool history too);
     // irreversible once the map is saved and the app is closed.
-    discardMissingAssets() {
+    // catIds limits the clean-up to those categories (the dialog lets the user keep some).
+    // Omitted or empty -> every category, as before.
+    discardMissingAssets(catIds) {
+        const only = (catIds && catIds.length) ? new Set(catIds) : null;
+        const drop = (key) => {
+            if (!this.isUnresolvedUserKey(key)) return false;
+            if (!only) return true;
+            const cat = this.plugin.getCategoryForKey(key);
+            return !!cat && only.has(cat.id);
+        };
         this.pushHistory(); // snapshot map + tool history first, so a single undo brings it all back
         let changed = false;
 
         for (const [key, h] of Object.entries(this.data.hexes)) {
             let hit = false;
-            if (h.texture && this.isUnresolvedUserKey(h.texture)) { delete h.texture; hit = true; }
-            for (const sd of HEX_SYMBOL_SLOTS) if (h[sd.slot] && this.isUnresolvedUserKey(h[sd.slot])) { delete h[sd.slot]; delete h[sd.color]; hit = true; }
+            if (h.texture && drop(h.texture)) { delete h.texture; hit = true; }
+            for (const sd of HEX_SYMBOL_SLOTS) if (h[sd.slot] && drop(h[sd.slot])) { delete h[sd.slot]; delete h[sd.color]; hit = true; }
             if (!hit) continue;
             changed = true;
             if (!this.hexHasContent(h)) delete this.data.hexes[key];
@@ -13407,7 +13676,7 @@ class HexCartographerView extends ItemView {
 
         for (const g of Object.keys(this.toolHistory)) {
             const list = this.toolHistory[g] || [];
-            const kept = list.filter(e => !this.historyEntryMissing(e));
+            const kept = list.filter(e => !this.historyEntryMissing(e, drop));
             if (kept.length !== list.length) { this.toolHistory[g] = kept; changed = true; }
         }
 
@@ -13419,23 +13688,16 @@ class HexCartographerView extends ItemView {
         this.requestSave();
     }
 
-    // One warning line. The template carries {name} (the category) and {settings}
-    // (a button opening the plugin settings, styled like the discard button). Built as DOM.
-    buildAssetWarningLine(lineEl, name) {
-        const withName = t('notice.assetsMissing').replace('{name}', name);
-        const parts = withName.split('{settings}');
-        lineEl.appendText(parts[0]);
-        if (parts.length > 1) {
-            const link = lineEl.createEl('button', { text: t('tooltip.settings'), attr: { style: this.warningBarButtonStyle() } });
-            link.onclick = (e) => {
-                e.preventDefault();
-                if (this.app.setting && this.app.setting.open) {
-                    this.app.setting.open();
-                    this.app.setting.openTabById('hex-cartographer');
-                }
-            };
-            lineEl.appendText(parts.slice(1).join('{settings}'));
-        }
+    // Jumps straight into the plugin settings, where the folder paths live.
+    buildSettingsButton(lineEl) {
+        const btn = lineEl.createEl('button', { text: t('tooltip.settings'), attr: { style: this.warningBarButtonStyle() } });
+        btn.onclick = (e) => {
+            e.preventDefault();
+            if (this.app.setting && this.app.setting.open) {
+                this.app.setting.open();
+                this.app.setting.openTabById('hex-cartographer');
+            }
+        };
     }
 
     renderCrosshair() {
@@ -15520,24 +15782,101 @@ class MigrationNoticeModal extends Modal {
 
 // Confirm dialog before discarding all missing graphics. Warns that this is irreversible once the
 // app is closed (only an in-session undo brings it back). onConfirm runs on OK; Cancel just closes.
+// Confirms discarding missing graphics. With several categories it lists them with
+// checkboxes (all ticked) so single ones can be kept; with one it just names it.
+// categories = [{ id, name, count }]; onConfirm receives the chosen ids.
 class DiscardAssetsModal extends Modal {
-    constructor(app, onConfirm) {
+    constructor(app, categories, onConfirm) {
         super(app);
+        this.categories = categories || [];
         this.onConfirm = onConfirm;
     }
 
     onOpen() {
         const { contentEl } = this;
         this.titleEl.setText(t('discardAssets.title'));
-        contentEl.createEl('p', { text: t('discardAssets.message'), attr: { style: 'margin-top: 0;' } });
+        const picked = new Set(this.categories.map(c => c.id)); // ticked = will be discarded
+        let ok = null;
+        const syncOk = () => { if (ok) ok.disabled = picked.size === 0; };
+
+        if (this.categories.length > 1) {
+            contentEl.createEl('p', { text: t('discardAssets.listHeading'), attr: { style: 'margin: 0 0 6px 0;' } });
+            const boxes = [];
+            // Ticking by hand is quicker while the list is short.
+            if (this.categories.length >= 5) {
+                const tools = contentEl.createDiv({ attr: { style: 'display: flex; gap: 12px; margin-bottom: 6px; font-size: 12px;' } });
+                const link = (label, on) => {
+                    const a = tools.createEl('a', { text: label, attr: { style: 'cursor: pointer; color: var(--text-accent);' } });
+                    a.onclick = (e) => { e.preventDefault(); for (const b of boxes) { b.checked = on; b.onchange(); } };
+                };
+                link(t('discardAssets.all'), true);
+                link(t('discardAssets.none'), false);
+            }
+            // Capped height: the buttons below stay reachable however many categories there are.
+            const list = contentEl.createDiv({ attr: { style: 'max-height: 240px; overflow-y: auto; margin-bottom: 10px;' } });
+            for (const c of this.categories) {
+                const label = list.createEl('label', { attr: { style: 'display: flex; align-items: center; gap: 8px; padding: 2px 0; cursor: pointer;' } });
+                const cb = label.createEl('input', { type: 'checkbox' });
+                cb.checked = true;
+                label.createSpan({ text: c.name + ' (' + c.count + ')' });
+                cb.onchange = () => {
+                    if (cb.checked) picked.add(c.id); else picked.delete(c.id);
+                    syncOk();
+                };
+                boxes.push(cb);
+            }
+        } else if (this.categories.length === 1) {
+            contentEl.createEl('p', {
+                text: t('discardAssets.single').replace('{name}', this.categories[0].name),
+                attr: { style: 'margin: 0 0 8px 0;' },
+            });
+        }
+
+        // Stays at normal size: it is the one line that prevents a misclick.
+        contentEl.createEl('p', { text: t('discardAssets.message'), attr: { style: 'margin: 0;' } });
+        contentEl.createEl('div', {
+            text: t('discardAssets.keepsProjection'),
+            attr: { style: 'margin: 4px 0 0 0; font-size: 12px; color: var(--text-muted);' },
+        });
+
         const row = contentEl.createDiv({ attr: { style: 'display: flex; gap: 8px; justify-content: flex-end; margin-top: 12px;' } });
         const cancel = row.createEl('button', { text: t('modal.cancel') });
         cancel.onclick = () => this.close();
-        const ok = row.createEl('button', { text: t('modal.ok'), cls: 'mod-warning' });
-        ok.onclick = () => { this.close(); if (this.onConfirm) this.onConfirm(); };
+        ok = row.createEl('button', { text: t('modal.ok'), cls: 'mod-warning' });
+        ok.onclick = () => { this.close(); if (this.onConfirm) this.onConfirm([...picked]); };
+        syncOk();
     }
 
     onClose() { this.contentEl.empty(); }
+}
+
+// "a/b/c.png" -> "a/b". No folder -> empty string.
+function dirOf(path) {
+    const i = String(path || '').lastIndexOf('/');
+    return i < 0 ? '' : String(path).slice(0, i);
+}
+
+// Sorts missing entries into blocks that share one destination folder, plus the ones found
+// nowhere. Saves repeating the same destination under every single entry.
+function groupByFoundDir(items) {
+    const blocks = [], byDir = new Map(), notFound = [];
+    for (const it of items) {
+        if (it.foundDir === null || it.foundDir === undefined) { notFound.push(it); continue; }
+        let b = byDir.get(it.foundDir);
+        if (!b) { b = { to: it.foundDir, items: [] }; byDir.set(it.foundDir, b); blocks.push(b); }
+        b.items.push(it);
+    }
+    blocks.sort((a, b) => a.to.localeCompare(b.to, currentLanguage));
+    return { blocks, notFound };
+}
+
+// Shortens a long path in the middle ("Folder/…/file.png") so start and end stay readable.
+function middleEllipsis(text, max) {
+    const str = String(text || '');
+    if (str.length <= max) return str;
+    const keep = max - 1;
+    const head = Math.ceil(keep / 2);
+    return str.slice(0, head) + '…' + str.slice(str.length - (keep - head));
 }
 
 // Lists every missing graphic, grouped by category (heading per category, files below). OK closes.
@@ -15558,33 +15897,63 @@ class MissingAssetsModal extends Modal {
         } else {
             this.groups.forEach((g, idx) => {
                 contentEl.createEl('div', {
-                    text: t('missingList.heading').replace('{name}', t('assetName.' + g.id)),
-                    attr: { style: `margin: ${idx === 0 ? '0' : '12px'} 0 4px 0; font-weight: 700; font-size: 15px;` },
+                    text: g.isProjection
+                        ? t('missingList.projectionHeading')
+                        : t('missingList.heading').replace('{name}', t('assetName.' + g.id)),
+                    attr: { style: `margin: ${idx === 0 ? '0' : '18px'} 0 6px 0; font-weight: 700; font-size: 15px;` },
                 });
-                const ul = contentEl.createEl('ul', { attr: { style: 'margin: 0; font-size: 13px;' } });
-                for (const it of g.items) {
-                    const li = ul.createEl('li');
-                    li.appendText(it.name);
-                    // A same-named graphic exists in the current folder -> mark it as re-findable.
-                    if (it.foundKey) li.createSpan({ text: ' → ' + t('missingList.found'), attr: { style: 'color: var(--text-success); font-weight: 600;' } });
+                // One block per destination folder: the old names, then where they turned up.
+                // Naming the folder once keeps long lists readable.
+                for (const b of g.blocks) {
+                    const ul = contentEl.createEl('ul', { attr: { style: 'margin: 0; font-size: 13px;' } });
+                    for (const it of b.items) ul.createEl('li', { text: it.name });
+                    contentEl.createEl('div', {
+                        text: t('missingList.found').replace('{path}', middleEllipsis(b.to, 58)),
+                        attr: {
+                            title: b.to,
+                            style: 'color: var(--text-success); font-weight: 700; font-size: 13px; margin: 3px 0 12px 0; word-break: break-word;',
+                        },
+                    });
+                }
+                // Found nowhere -> needs manual work, so it stands apart at the end.
+                if (g.notFound.length > 0) {
+                    contentEl.createEl('div', {
+                        text: t('missingList.notFound'),
+                        attr: { style: 'margin: 0 0 3px 0; font-size: 13px; font-weight: 600; color: var(--text-muted);' },
+                    });
+                    const ul = contentEl.createEl('ul', { attr: { style: 'margin: 0; font-size: 13px;' } });
+                    for (const it of g.notFound) ul.createEl('li', { text: it.name });
+                }
+                // Second way out if nothing was found: pick a new file by hand.
+                if (g.isProjection) {
+                    contentEl.createEl('div', {
+                        text: t('missingList.projectionHint').replace('{swap}', t('projection.swap')),
+                        attr: { style: 'margin: 12px 0 0 0; font-size: 12px; color: var(--text-muted);' },
+                    });
                 }
             });
         }
         // Any found graphics -> offer to repoint the map to their new paths (explicit, never automatic).
         const remaps = new Map();
-        for (const g of this.groups) for (const it of g.items) if (it.foundKey) remaps.set(it.key, it.foundKey);
+        let projPath = null; // the reference image is repointed by path, not by key
+        for (const g of this.groups) for (const b of g.blocks) for (const it of b.items) {
+            if (it.foundKey) remaps.set(it.key, it.foundKey);
+            else if (it.foundPath) projPath = it.foundPath;
+        }
 
         const row = contentEl.createDiv({ attr: { style: 'display: flex; gap: 8px; align-items: center; margin-top: 12px;' } });
         // Discard sits apart on the left (destructive); OK and apply on the right.
-        if (this.onDiscard) {
+        // Discarding only ever touches user graphics — the reference image keeps its frame.
+        if (this.onDiscard && this.groups.some(g => !g.isProjection)) {
             const discard = row.createEl('button', { text: t('assetWarning.discard'), cls: 'mod-warning', attr: { title: t('assetWarning.discardTip'), style: 'margin-right: auto;' } });
             discard.onclick = () => { this.close(); this.onDiscard(); };
         }
-        const ok = row.createEl('button', { text: t('modal.ok'), cls: remaps.size ? '' : 'mod-cta' });
+        const canApply = remaps.size > 0 || !!projPath;
+        const ok = row.createEl('button', { text: t('modal.ok'), cls: canApply ? '' : 'mod-cta' });
         ok.onclick = () => this.close();
-        if (remaps.size > 0) {
+        if (canApply) {
             const apply = row.createEl('button', { text: t('missingList.apply'), cls: 'mod-cta' });
-            apply.onclick = () => { this.close(); if (this.onApplyRemaps) this.onApplyRemaps(remaps); };
+            apply.onclick = () => { this.close(); if (this.onApplyRemaps) this.onApplyRemaps(remaps, projPath); };
         }
     }
 
