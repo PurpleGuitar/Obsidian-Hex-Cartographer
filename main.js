@@ -220,6 +220,23 @@ const USER_ASSET_EXTENSIONS = ['svg', 'png', 'jpg', 'jpeg', 'webp', 'gif', 'avif
 // hex — 256 covers the required 240 px, anything more is wasted memory.
 // The longer side is clipped by cover fit anyway.
 const USER_ASSET_MAX_SHORT_SIDE = 256;
+const IMAGE_MIME = {
+    svg: 'image/svg+xml', png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg',
+    webp: 'image/webp', gif: 'image/gif', avif: 'image/avif', bmp: 'image/bmp',
+};
+
+// Vault files are served from app:// URLs. Drawing such an image marks the canvas as
+// "foreign", and the browser then refuses to read its pixels back — which is exactly what
+// the colour eyedropper and the average-colour routine do. Handing the bytes over as a blob
+// keeps the canvas readable. Caller revokes the url once the image has decoded.
+async function vaultBlobUrl(vault, filePathOrFile) {
+    const path = filePathOrFile.path || filePathOrFile;
+    const buffer = typeof filePathOrFile === 'string'
+        ? await vault.adapter.readBinary(filePathOrFile)
+        : await vault.readBinary(filePathOrFile);
+    const ext = (path.split('.').pop() || '').toLowerCase();
+    return URL.createObjectURL(new Blob([buffer], { type: IMAGE_MIME[ext] || 'application/octet-stream' }));
+}
 // Upper bound for reloading on export. Caps memory in case someone exports
 // at extreme resolution; the source file remains the real limit anyway.
 const USER_ASSET_EXPORT_MAX_SHORT_SIDE = 2048;
@@ -4894,7 +4911,7 @@ class UserAssetRegistry {
             try {
                 const data = asset.ext === 'svg'
                     ? await this.loadSvg(asset)
-                    : { colorable: false, image: await this.loadBitmap(this.app.vault.adapter.getResourcePath(asset.filePath)) };
+                    : { colorable: false, image: await this.loadVaultBitmap(asset.filePath) };
 
                 // Zwischenzeitlich neu gescannt -> Ergebnis verwerfen.
                 if (gen !== this.generation) return asset;
@@ -4967,7 +4984,7 @@ class UserAssetRegistry {
                 if (asset.decoded && asset.colorable) return null;
                 return await this.loadSvg(asset, shortSideCap).then(d => (d && d.image) || null);
             }
-            return await this.loadBitmap(this.app.vault.adapter.getResourcePath(asset.filePath), shortSideCap);
+            return await this.loadVaultBitmap(asset.filePath, shortSideCap);
         } catch (e) {
             console.warn(`Hex Cartographer: could not load user asset at high resolution ${asset.filePath}`, e);
             return null;
@@ -5044,6 +5061,19 @@ class UserAssetRegistry {
         }
     }
 
+    // Same as loadBitmap, but reads the file itself so the canvas stays readable.
+    async loadVaultBitmap(filePath, cap = USER_ASSET_MAX_SHORT_SIDE) {
+        let url = null;
+        try {
+            url = await vaultBlobUrl(this.app.vault, filePath);
+            return await this.loadBitmap(url, cap);
+        } catch (e) {
+            return null;
+        } finally {
+            if (url) URL.revokeObjectURL(url); // the image has decoded by now
+        }
+    }
+
     // cap: target size of the short side, or null/0 to keep as loaded.
     loadBitmap(src, cap = USER_ASSET_MAX_SHORT_SIDE) {
         return new Promise((resolve) => {
@@ -5054,16 +5084,13 @@ class UserAssetRegistry {
         });
     }
 
-    // Reloads a bitmap graphic straight from disk (cache-busted) and recomputes its
-    // average color + image. For the disk watcher: right after an external change the
-    // cached resource URL can still serve the old bytes, so a plain re-decode would
-    // keep the old average. SVGs are vectors (colorable) and have no bitmap average.
+    // Reloads a bitmap graphic straight from disk and recomputes its average color +
+    // image. For the disk watcher: reading the bytes always yields the current file.
+    // SVGs are vectors (colorable) and have no bitmap average.
     async reloadFromDisk(key) {
         const asset = this.assets.get(key);
         if (!asset || asset.ext === 'svg') return;
-        let url = this.app.vault.adapter.getResourcePath(asset.filePath);
-        url += (url.includes('?') ? '&' : '?') + 'hxcbust=' + Date.now();
-        const img = await this.loadBitmap(url);
+        const img = await this.loadVaultBitmap(asset.filePath, null);
         if (!img) return;
         asset.image = img;
         asset.decoded = true;
@@ -6148,6 +6175,9 @@ class HexCartographerView extends ItemView {
 
         this.masterColor = DEFAULT_MASTER_COLOR;
         this.hexColorColor = DEFAULT_PALETTE[0];
+        // True once a colour was picked AFTER a texture: that colour then wins over the
+        // texture's average until the texture is chosen again.
+        this.hexColorManual = false;
         // null = "Color" mode (default), otherwise the key of a user texture.
         this.hexTexture = null;
 
@@ -6786,6 +6816,7 @@ class HexCartographerView extends ItemView {
                 if (newData.settings.hexTexture !== undefined) {
                     this.hexTexture = newData.settings.hexTexture;
                 }
+                this.hexColorManual = !!newData.settings.hexColorManual;
                 // Restore the per-tool quick-select history (only the known drawing tools).
                 const savedHistory = newData.settings.toolHistory;
                 if (!this.toolHistory) this.toolHistory = {};
@@ -7832,6 +7863,7 @@ class HexCartographerView extends ItemView {
             group: this.currentToolGroup, drawMode: this.drawMode,
             patternData: this.patternData, patternSourceHex: this.patternSourceHex,
             hexColorColor: this.hexColorColor, hexTexture: this.hexTexture,
+            hexColorManual: this.hexColorManual,
             masterColor: this.masterColor,
         };
     }
@@ -7844,6 +7876,7 @@ class HexCartographerView extends ItemView {
         this.patternSourceHex = s.patternSourceHex;
         this.hexColorColor = s.hexColorColor;
         this.hexTexture = s.hexTexture;
+        this.hexColorManual = !!s.hexColorManual;
         this.masterColor = s.masterColor;
         if (this.masterColorInput) {
             this.masterColorInput.value = this.masterColor;
@@ -8375,6 +8408,10 @@ class HexCartographerView extends ItemView {
 
             this.currentToolGroup = groupId;
             this.drawMode = 'pen';
+            // A graphic that cannot be tinted starts from its own average colour; a
+            // colourable one keeps the colour currently in use.
+            const avg = this.symbolAvgColor(id);
+            if (avg) config.symbolColor = avg;
             this.masterColor = config.symbolColor;
             if (this.masterColorInput) {
                 this.masterColorInput.value = this.masterColor;
@@ -8458,11 +8495,10 @@ class HexCartographerView extends ItemView {
             this.hexTexture = key;
             this.currentToolGroup = 'hexcolor';
             this.drawMode = 'pen';
-            // Each texture carries its own background color: a fresh random color the
-            // first time, the same one every time after. It shows through where the
-            // texture has alpha and, if the texture goes missing, keeps the hexes of
-            // different textures visually distinct behind the folder icon. Plain color
-            // (no texture) keeps the normal color.
+            // Picking a graphic always starts from its own average colour, so a chosen
+            // colour from before does not carry over. Plain colour (no texture) keeps the
+            // last used colour.
+            this.hexColorManual = false;
             this.masterColor = (key && key !== EMPTY_HEX_KEY) ? this.colorForTexture(key) : this.hexColorColor;
             if (this.masterColorInput) {
                 this.masterColorInput.value = this.masterColor;
@@ -9052,11 +9088,10 @@ class HexCartographerView extends ItemView {
         }
         if (this.currentToolGroup === 'hexcolor') {
             this.hexColorColor = this.masterColor;
-            // Choosing a plain colour leaves texture mode. Without this, hexTexture stays
-            // set and hexToolColor() keeps returning the texture's colour after a reload
-            // instead of the colour just picked. Persist the switch so it survives a save.
+            // The texture stays selected — only its average colour is overruled, until the
+            // texture is picked again. Remembered so it survives a save.
             if (this.hexTexture) {
-                this.hexTexture = null;
+                this.hexColorManual = true;
                 this.updateHexColorButtonIcon(this.hexColorBtn);
             }
             const toolbar = this.hexToolbarEl();
@@ -9554,7 +9589,12 @@ class HexCartographerView extends ItemView {
     // for tools that have no history. Symbols keep variant + colours; the hex tool keeps its
     // colour + texture.
     historyEntryFor(group) {
-        if (group === 'hexcolor') return { color: this.hexColorColor, texture: this.hexTexture || null };
+        if (group === 'hexcolor') {
+            const entry = { color: this.hexColorColor, texture: this.hexTexture || null };
+            // Only set when it says something: a texture plus a colour chosen over its average.
+            if (entry.texture && this.hexColorManual) entry.manual = true;
+            return entry;
+        }
         if (group === 'pattern') {
             const p = this.patternData;
             if (!p) return null;
@@ -9571,6 +9611,14 @@ class HexCartographerView extends ItemView {
         // what looks like the same symbol.
         if (this.isSymbolColorable(c.currentVariant)) entry.symbolColor = c.symbolColor;
         return entry;
+    }
+
+    // Average colour of a symbol graphic that cannot be tinted (a bitmap), else null.
+    // Colourable graphics keep whatever colour is in use.
+    symbolAvgColor(id) {
+        if (!isUserAssetKey(id)) return null; // system symbols are always colourable
+        const asset = this.plugin.getUserAsset(id);
+        return (asset && asset.colorable === false && asset.avgColor) ? asset.avgColor : null;
     }
 
     // Whether a symbol variant can be tinted: system symbols are colorable SVG paths; a user
@@ -9655,6 +9703,7 @@ class HexCartographerView extends ItemView {
         if (group === 'hexcolor') {
             this.hexColorColor = entry.color;
             this.hexTexture = entry.texture || null;
+            this.hexColorManual = !!entry.manual;
             this.currentToolGroup = 'hexcolor';
             this.drawMode = 'pen';
             this.masterColor = this.hexToolColor();
@@ -9668,6 +9717,9 @@ class HexCartographerView extends ItemView {
             c.backgroundEnabled = !!entry.backgroundEnabled;
             this.currentToolGroup = group;
             this.drawMode = 'pen';
+            // Bitmaps store no colour in the slot, so take their average again.
+            const avgSym = this.symbolAvgColor(c.currentVariant);
+            if (avgSym) c.symbolColor = avgSym;
             this.masterColor = c.symbolColor;
             if (isUserAssetKey(c.currentVariant)) this.plugin.ensureUserAssets([c.currentVariant]);
             const btn = this.containerEl && this.containerEl.querySelector(`[data-tool-group="${group}"]`);
@@ -10206,8 +10258,8 @@ class HexCartographerView extends ItemView {
                 const cx = Math.round(this.mouseDownPos.x * this.data.zoom + this.data.offX);
                 const cy = Math.round(this.mouseDownPos.y * this.data.zoom + this.data.offY);
                 if (cx >= 0 && cy >= 0 && cx < this.canvas.width && cy < this.canvas.height) {
-                    const pixel = this.ctx.getImageData(cx, cy, 1, 1).data;
-                    if (pixel[3] > 0) {
+                    const pixel = this.pickCanvasPixel(cx, cy);
+                    if (pixel && pixel[3] > 0) {
                         this.masterColor = rgbToHex(pixel[0], pixel[1], pixel[2]);
                         this.syncMasterColorInput();
                         this.updateActivePathColor();
@@ -10656,8 +10708,8 @@ class HexCartographerView extends ItemView {
                             const cx = Math.round(this.mouseDownPos.x * this.data.zoom + this.data.offX);
                             const cy = Math.round(this.mouseDownPos.y * this.data.zoom + this.data.offY);
                             if (cx >= 0 && cy >= 0 && cx < this.canvas.width && cy < this.canvas.height) {
-                                const pixel = this.ctx.getImageData(cx, cy, 1, 1).data;
-                                if (pixel[3] > 0) {
+                                const pixel = this.pickCanvasPixel(cx, cy);
+                                if (pixel && pixel[3] > 0) {
                                     this.masterColor = rgbToHex(pixel[0], pixel[1], pixel[2]);
                                     this.syncMasterColorInput();
                                     this.updateActivePathColor();
@@ -10946,8 +10998,8 @@ class HexCartographerView extends ItemView {
                         const cx = Math.round(this.mouseDownPos.x * this.data.zoom + this.data.offX);
                         const cy = Math.round(this.mouseDownPos.y * this.data.zoom + this.data.offY);
                         if (cx >= 0 && cy >= 0 && cx < this.canvas.width && cy < this.canvas.height) {
-                            const pixel = this.ctx.getImageData(cx, cy, 1, 1).data;
-                            if (pixel[3] > 0) {
+                            const pixel = this.pickCanvasPixel(cx, cy);
+                            if (pixel && pixel[3] > 0) {
                                 this.masterColor = rgbToHex(pixel[0], pixel[1], pixel[2]);
                                 this.syncMasterColorInput();
                                 this.updateActivePathColor();
@@ -11499,16 +11551,18 @@ class HexCartographerView extends ItemView {
         return !asset || !!asset.failed;
     }
 
-    // Persistent per-texture background color, remembered in the map file so all
-    // hexes of a texture share one color and it survives reopening. First use takes
-    // the texture's average color (once decoded); random only as a fallback. Existing
-    // maps keep their stored colors — this changes nothing already assigned.
+    // Background color of a texture: the graphic's own average. Stored in the map file so
+    // it is available before the graphic is decoded and keeps the hexes of different
+    // textures distinct once a graphic goes missing. A random color only when no average
+    // can be had. Already painted hexes carry their own color and are never touched.
     colorForTexture(key) {
         if (!this.data.textureColors) this.data.textureColors = {};
-        if (!this.data.textureColors[key]) {
-            const asset = this.plugin?.getUserAsset(key);
-            this.data.textureColors[key] = (asset && asset.avgColor) || randomHexColor();
+        const asset = this.plugin?.getUserAsset(key);
+        if (asset && asset.avgColor) {
+            this.data.textureColors[key] = asset.avgColor;
+            return asset.avgColor;
         }
+        if (!this.data.textureColors[key]) this.data.textureColors[key] = randomHexColor();
         return this.data.textureColors[key];
     }
 
@@ -11559,6 +11613,7 @@ class HexCartographerView extends ItemView {
     // No color is generated here — restoring a tool must not invent one.
     hexToolColor(textureColors) {
         if (!this.hexTexture) return this.hexColorColor;
+        if (this.hexColorManual) return this.hexColorColor; // chosen after the texture -> wins
         const known = (textureColors || this.data.textureColors || {})[this.hexTexture];
         return known || this.hexColorColor;
     }
@@ -12768,8 +12823,15 @@ class HexCartographerView extends ItemView {
             if (!p.iw || !p.ih) { p.iw = img.naturalWidth; p.ih = img.naturalHeight; }
             this.render();
         };
-        img.onerror = () => { this._projectionImg = null; this._projectionMissing = true; this.render(); };
-        img.src = this.app.vault.getResourcePath(file);
+        let url = null;
+        const release = () => { if (url) { URL.revokeObjectURL(url); url = null; } };
+        const prevOnload = img.onload;
+        img.onload = () => { release(); prevOnload(); };
+        img.onerror = () => { release(); this._projectionImg = null; this._projectionMissing = true; this.render(); };
+        // Bytes instead of the app:// url — otherwise the canvas can no longer be read
+        // back and the colour eyedropper stops working.
+        vaultBlobUrl(this.app.vault, file).then((u) => { url = u; img.src = u; })
+            .catch(() => { this._projectionImg = null; this._projectionMissing = true; this.render(); });
     }
 
     // Picks a new image for the projection. First time: centered in the current view at 100%
@@ -12794,8 +12856,13 @@ class HexCartographerView extends ItemView {
             this.render();
             this.requestSave();
         };
-        img.onerror = () => new Notice(t('notice.projectionLoadFailed'));
-        img.src = this.app.vault.getResourcePath(file);
+        let url = null;
+        const release = () => { if (url) { URL.revokeObjectURL(url); url = null; } };
+        const prevOnload = img.onload;
+        img.onload = () => { release(); prevOnload(); };
+        img.onerror = () => { release(); new Notice(t('notice.projectionLoadFailed')); };
+        vaultBlobUrl(this.app.vault, file).then((u) => { url = u; img.src = u; })
+            .catch(() => new Notice(t('notice.projectionLoadFailed')));
     }
 
     clearProjection() {
@@ -13460,6 +13527,17 @@ class HexCartographerView extends ItemView {
         const lines = keys.slice(0, 3).map(k => t('assetWarning.missingFile').replace('{name}', this.missingAssetLabel(k)));
         if (keys.length > 3) lines.push(t('assetWarning.missingMore'));
         return lines.join('\n');
+    }
+
+    // Reads one pixel off the canvas. Returns null instead of throwing when the browser
+    // refuses — a swallowed exception would abort the click without a word.
+    pickCanvasPixel(cx, cy) {
+        try {
+            return this.ctx.getImageData(cx, cy, 1, 1).data;
+        } catch (e) {
+            console.warn('Hex Cartographer: canvas pixels cannot be read', e);
+            return null;
+        }
     }
 
     // Custom tooltip for the missing-graphic hover: a small pill near the cursor. Replaces the
@@ -15298,6 +15376,7 @@ class HexCartographerView extends ItemView {
                     editMode: this.editMode,
                     hexColorColor: this.hexColorColor,
                     hexTexture: this.hexTexture,
+                    hexColorManual: this.hexColorManual,
                     lastUsedTextSize: this.lastUsedTextSize,
                     lastUsedTextColor: this.lastUsedTextColor,
                     lastUsedTextOutline: this.lastUsedTextOutline,
